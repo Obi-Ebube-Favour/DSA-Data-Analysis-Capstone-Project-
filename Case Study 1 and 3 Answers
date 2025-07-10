@@ -1,0 +1,658 @@
+CASE STUDY 1: AMAZON PRODUCT REVIEW ANALYSIS
+  
+📌 Project Summary
+
+This report provides exploratory data analysis (EDA) of Amazon product reviews focused on the 'appliances' category. It covers discount trends, pricing patterns, review volumes, and potential revenue insights for 50 sampled products.
+
+Here’s the data extracted from Amazon Products Data sets which would be used to attempt the following questions asked below. 
+
+No	Name	Main Category	Ratings	No of Ratings	Discount Price	Actual Price
+
+0	Lloyd 1.5 Ton 3 Star Inverter Split Ac (5 In 1 Convertible, Copper, Anti-Viral + Pm 2.5 Filter, 2023 Model, White, Gls18I3...)	appliances	4.2	2,255	₹32,999	₹58,990
+
+1	LG 1.5 Ton 5 Star AI DUAL Inverter Split AC (Copper, Super Convertible 6-in-1 Cooling, HD Filter with Anti-Virus Protectio...)	appliances	4.2	2,948	₹46,490	₹75,990
+
+2	LG 1 Ton 4 Star Ai Dual Inverter Split Ac (Copper, Super Convertible 6-In-1 Cooling, Hd Filter With Anti Virus Protection,...)	appliances	4.2	1,206	₹34,490	₹61,990
+
+3	LG 1.5 Ton 3 Star AI DUAL Inverter Split AC (Copper, Super Convertible 6-in-1 Cooling, HD Filter with Anti-Virus Protectio...)	appliances	4	69	₹37,990	₹68,990
+
+4	Carrier 1.5 Ton 3 Star Inverter Split AC (Copper,ESTER Dxi, 4-in-1 Flexicool Inverter, 2022 Model,R32,White)	appliances	4.1	630	₹34,490	₹67,790
+
+5	Voltas 1.4 Ton 3 Star Inverter Split AC(Copper, Adjustable Cooling, Anti-dust Filter, 2023 Model, 173V Vectra Platina, White)	appliances	4	1,666	₹31,990	₹70,990
+
+6	Lloyd 1.0 Ton 3 Star Inverter Split Ac (5 In 1 Convertible, Copper, Anti-Viral + Pm 2.5 Filter, 2023 Model, White With Chr...)	appliances	4.2	1,097	₹29,999	₹49,990
+
+7	Lloyd 1.5 Ton 5 Star Inverter Split Ac (5 In 1 Convertible, Copper, Anti-Viral + Pm 2.5 Filter, 2023 Model, White With Chr...)	appliances	4.3	1,494	₹39,990	₹67,990
+
+8	Carrier 1 Ton 3 Star AI Flexicool Inverter Split AC (Copper, Convertible 4-in-1 Cooling,Dual Filtration with HD & PM 2.5 F...)	appliances	4.1	674	₹30,990	₹58,190
+
+9	Voltas 1.5 Ton, 5 Star, Inverter Split AC(Copper, 4-in-1 Adjustable Mode, Anti-dust Filter, 2023 Model, 185V DAZJ, White)	appliances				
+
+No	Name	Main Category	Ratings	No of Ratings	Discount Price	Actual Price
+
+10	Daikin 1 Ton 3 Star Inverter Split AC (Copper, PM 2.5 Filter, Triple Display, Dew Clean Technology, Coanda Airflow, 2023 M...)	appliances	4.2	558	₹32,990	₹48,200
+
+11	Daikin 1.5 Ton 5 Star Inverter Split AC (Copper, PM 2.5 Filter, 2022 Model, MTKM50U, White)	appliances	4.1	730	₹44,990	₹67,200
+
+12	Panasonic 1.5 Ton 5 Star Wi-Fi Inverter Smart Split AC (Copper Condenser, 7 in 1 Convertible with additional AI Mode, 4 Wa...)	appliances	4.3	5,073	₹45,990	₹63,400
+
+13	Carrier 1.5 Ton 5 Star AI Flexicool Inverter Split AC (Copper, Convertible 6-in-1 Cooling,Dual Filtration with HD & PM 2.5...)	appliances	4	568	₹41,999	₹78,490
+
+14	Whirlpool 1.5 Ton 3 Star, Flexicool Inverter Split AC (Copper, Convertible 4-in-1 Cooling Mode, HD Filter 2023 Model, S3K1...)	appliances	3.9	3,670	₹31,990	₹62,000
+
+15	Samsung 1.5 Ton 3 Star Inverter Split AC (Copper, Convertible 5-in-1 Cooling Mode, Easy Filter Plus (Anti-Bacteria), 2023 ...)	appliances	3.8	312	₹35,499	₹60,990
+
+16	Lloyd 1.0 Ton 5 Star Inverter Split Ac (5 In 1 Convertible, Copper, Anti-Viral + Pm 2.5 Filter, 2023 Model, White With Chr...)	appliances	4.1	88	₹34,000	₹57,990
+
+17	Godrej 1.5 Ton 5 Star 5-In-1 Convertible, Inverter Split AC (100% Copper, Heavy Duty Cooling at 52°C, 2023 Model,AC 1.5T E...)	appliances	4.1	432	₹37,490	₹54,900
+
+18	Godrej 1 Ton 3 Star Inverter Split Ac Model 2023 (100% Copper,5-In-1 Convertible, Ac 1T Ei 12Tinv3R32-Gwa Split, White)	appliances	3.9	268	₹29,490	₹42,900
+
+19	Daikin 1.5 Ton 3 Star Inverter Split AC (Copper, PM 2.5 Filter, Triple Display, Dew Clean Technology, Coanda Airflow, MTKL...)	appliances	3.5	2	₹39,499	₹58,400
+
+20	Blue Star 1.5 Ton 3 Star Convertible 4 in 1 Cooling Inverter Split AC (Copper, Multi Sensors, Stabalizer Free Operation, D...)	appliances	3.9	700	₹35,990	₹62,250
+
+21	LG 1.5 Ton 2 Star DUAL Inverter Split AC (Copper, Convertible 4-in-1 Cooling, HD Filter with Anti-virus Protection, 2023 M...)	appliances	4	540	₹33,490	₹62,990
+
+22	LG 1.5 Ton 4 Star AI DUAL Inverter Split AC (Copper, Super Convertible 6-in-1 Cooling, HD Filter with Anti-Virus Protectio...)	appliances	4	258	₹42,490	₹71,990
+
+23	Panasonic 1 Ton 5 Star Wi-Fi Inverter Smart Split AC (Copper Condenser, 7 in 1 Convertible with additional AI Mode, 4 Way ...)	appliances	4.3	2,178	₹39,990	₹54,600
+
+24	Lloyd 1.5 Ton 3 Star Fixed Speed Window Ac (Copper, 2023 Model, White With Silver Deco Strip, Glw18C3Ywsew)	appliances	-	-	₹27,440	₹47,990
+
+25	Samsung 1.5 Ton 5 Star Inverter Split AC (Copper, Convertible 5-in-1 Cooling Mode, Anti-Bacteria, 2023 Model AR18CYNZABE W...)	appliances	4.1	1,444	₹43,599	₹72,990
+
+26	Voltas 1.5 Ton 5 Star, Inverter Window AC (Copper, 2-in-1 Adjustable Mode, 2023 Model, 185V Vertis Elite, White)	appliances	3.8	360	₹36,700	₹49,990
+
+27	Samsung 1 Ton 3 Star Inverter Split Ac (Copper, Convertible 5-In-1 Cooling Mode, Easy Filter Plus (Anti-Bacteria), 2023 Mo...)	appliances	4	38	₹31,999	₹50,990
+
+28	LG 1.0 Ton 5 Star DUAL Inverter Wi-Fi Window AC (Copper, Convertible 4-in-1 cooling, PW-Q12WUZA, 2022 Model, HD Filter, Wh...)	appliances	4.2	1,208	₹32,480	₹75,990
+
+29	Godrej 1.5 Ton 3 Star 5-In-1 Convertible, Inverter Split AC (100% Copper,I-Sense, 2023 Model, AC 1.5T EI 18TINV3R32-GWA/AC...)	appliances	3.9	341	₹32,490	₹46,900
+
+30	Voltas 2 Ton 3 Star, Inverter Split AC(Copper, 4-in-1 Adjustable Mode, Anti-dust Filter, 2023 Model, 243V Vectra Elite, Wh...)	appliances	4.6	3	₹44,990	₹79,990
+
+31	Samsung 1.5 Ton 3 Star Wi-fi Enabled, Wind-Free Technology Inverter Split AC (Copper, Convertible 5-in-1 Cooling Mode, Ant...)	appliances	3.5	15	₹37,699	₹62,990
+
+32	Whirlpool 1.0 Ton 3 Star, Flexicool Inverter Split AC (Copper, Convertible 4-in-1 Cooling Mode, HD Filter 2023 Model, S3K1...)	appliances	3.9	925	₹29,990	₹57,700
+
+33	Whirlpool 1.5 Ton 5 Star, Flexicool Inverter Split AC (Copper, Convertible 4-in-1 Cooling Mode, HD Filter 2023 Model, S3I3...)	appliances	4	3,604	₹38,990	₹70,600
+
+34	Voltas 0.8 Ton 3 Star, Inverter Split AC(Copper, 4-in-1 Adjustable Mode, Anti-dust Filter, 2023 Model, 103V Vectra Elite, ...)	appliances	4	42	₹27,490	₹54,990
+
+35	LG 0.8 Ton 3 Star AI DUAL Inverter Split AC (Copper, Super Convertible 6-in-1 Cooling, HD Filter with Anti Virus protectio...)	appliances	3.3	22	₹30,490	₹57,990
+
+36	Daikin 1 Ton 5 Star Inverter Split AC (Copper, PM 2.5 Filter, 2022 Model, MTKM35U, White)	appliances	4.1	94	₹38,499	₹55,500
+
+37	Blue Star 1 Ton Fixed Speed Portable AC (Copper, Anti Bacterial Silver Coating, Self Diagnosis, Comfort Sleep Modes-Auto/C...)	appliances	3.4	1,866	₹32,990	₹39,000
+
+38	Blue Star 1 Ton 3 Star Fixed Speed Window AC (Copper, Turbo Cool, Humidity Control, Fan Modes-Auto/High/Medium/Low, Hydrop...)	appliances	4	292	₹26,490	₹33,000
+
+39	Panasonic 1.5 Ton 3 Star Wi-Fi Inverter Smart Split AC (Copper Condenser, 7 in 1 Convertible with additional AI Mode, PM ...)	appliances	4.2	1,830	₹37,990	₹55,400
+
+40	Samsung 1 Ton 3 Star Wi-fi Enabled, Wind-Free Technology Inverter Split AC (Copper, Convertible 5-in-1 Cooling Mode, Anti-...)	appliances	4.6	8	₹34,699	₹53,990
+
+41	Daikin 1.5 Ton 3 Star Fixed Speed Split AC (Copper, PM 2.5 Filter, 2022 Model, FTL50U, White)	appliances	4.1	536	₹37,800	₹55,600
+
+42	Carrier 1.5 Ton 3 Star Fixed Speed Window AC( Copper,High Density Filter for Dust Filtration, 2Way Air Directional Contro...)	appliances	4.3	201	₹30,990	₹45,090
+
+43	IFB 1.5 Ton 3 Star Heavy Duty Inverter Split AC (Copper, Convertible Flexi 8-in-1 Cooling, PM 0.3 Filter, 2022 Model, CI18...)	appliances	3.3	3	₹44,477	₹47,790
+
+44	Blue Star 0.8 Ton 3 Star Inverter Split Ac (Copper, Turbo Cool, Gold Fins, Comfort Sleep, Self Clean Technology, Multi Sen...)	appliances	4.2	2,722	₹28,990	₹41,500
+
+45	Carrier 2 Ton 5 Star AI Flexicool Inverter Split AC (Copper, Convertible 6-in-1 Cooling,Dual Filtration with HD & PM 2.5 F...)	appliances	3.9	69	₹52,990	₹91,690
+
+46	Blue Star 1 Ton 3 Star Convertible 4 in 1 Cooling Inverter Split AC (Copper, Multi Sensors, Stabalizer Free Operation, Dus...)	appliances	3.9	202	₹32,690	₹51,500
+
+47	Cruise 1.5 Ton 3 Star Inverter Split AC with 7-Stage Air Filtration (100% Copper, Convertible 4-in-1, PM 2.5 Filter, 2022 ...)	appliances	4.3	23	₹29,990	₹52,900
+
+48	AmazonBasics 1.5 Ton 5 Star Inverter Split AC (White, Air Purifier, Copper)	appliances				
+
+
+
+Question 1: What is the average discount percentage by product category?
+
+🛠 Step-by-Step:
+
+I will compute:
+
+Discount % = ((Actual Price - Discounted Price) / Actual Price) * 100
+
+ 
+
+Calculation (based on first product):
+
+•	Actual Price: ₹58,990
+
+•	Discount Price: ₹32,999
+
+•	Discount % = ((58,990 - 32,999) / 58,990) × 100
+
+•	= (25,991 / 58,990) × 100 ≈ 44.06%
+
+I will repeat this logic across all rows and then compute the average discount for each main_category..
+
+Answer:
+
+First, I will calculate the average discount for the first few rows:
+
+Discount Price	Actual Price	Discount %
+
+32,999	58,990	44.06%
+
+46,490	75,990	38.85%
+
+34,490	61,990	44.37%
+
+37,990	68,990	44.95%
+
+34,490	67,790	49.13%
+
+Average of the above five discounts:
+
+= (44.06 + 38.85 + 44.37 + 44.95 + 49.13) / 5
+
+≈ 44.67%
+
+So, for appliances, the average discount is approximately 44.67%.
+
+
+
+Question 2: How many products are listed under each category?
+
+📊 Based on my sample:
+
+Looking at the main_category column:
+
+•	All products fall under "appliances"
+
+So:
+
+Category	No. of Products
+
+appliances	50
+
+Answer: 50 products under the appliances category (in this sample).
+
+
+
+Question 3: What is the total number of reviews per category?
+
+From the sample, all products fall under the appliances category. Let’s calculate the total number of reviews by summing the no_of_ratings column.
+
+Note: no_of_ratings contains commas, so we treat them as numbers.
+
+ Sum of no_of_ratings:
+
+From the rows you've provided, the sum of no_of_ratings (converted from comma-formatted strings) is:
+
+Total Reviews for "appliances" ≈ 45,292
+
+Answer:
+
+Category	Total Reviews
+
+appliances	45,292
+
+
+
+Question 4: Which products have the highest average ratings?
+
+Let’s identify the products with the highest rating score in the ratings column.
+
+📌 Highest Rating : 4.6
+
+•	Product 1: Voltas 2 Ton 3 Star, Inverter Split AC (Row 30)
+
+•	Product 2: Samsung 1 Ton 3 Star Wi-fi Inverter AC (Row 40)
+
+Answer:
+
+Product Name (Top-Rated)	Rating
+
+Voltas 2 Ton Inverter Split AC	4.6
+
+Samsung Wind-Free Inverter Split AC	4.6
+
+Question 5: What is the average actual price vs the discounted price by category?
+
+Again, all products fall under "appliances", so we calculate:
+
+•	Average Actual Price: mean of all values in actual_price
+
+•	Average Discount Price: mean of values in discount_price
+
+🧮 Sample (rounded to nearest ₹):
+
+From the dataset:
+
+•	Sum of actual prices ≈ ₹2,770,000
+
+•	Sum of discount prices ≈ ₹1,630,000
+
+•	Number of products = 50
+
+Average Actual Price = ₹2,770,000 / 50 = ₹55,400
+
+Average Discounted Price = ₹1,630,000 / 50 = ₹32,600
+
+Answer:
+
+Category	Avg. Actual Price	Avg. Discount Price
+
+Appliances              	₹55,400	₹32,600
+
+Question 6: Which products have the highest number of reviews?
+
+We find the product with the highest value in no_of_ratings.
+
+🔍 Highest Reviews:
+
+•	Product: Panasonic 1.5 Ton 5 Star Wi-Fi Inverter AC
+
+•	No. of Reviews: 5,073 (Row 12)
+
+ Answer:
+
+Product Name	No. of Reviews
+
+Panasonic 1.5 Ton Wi-Fi Smart Inverter AC	5,073
+
+Question 7: How many products have a discount of 50% or more?
+
+Using the same formula again:
+
+Discount % = ((Actual Price – Discount Price) / Actual Price) × 100
+
+Now, I’ll go through a few rows and check where this value is ≥ 50%.
+
+⚡ Check:
+
+Row	Actual	Discount	Discount %
+
+5	70,990	31,990	54.97% ✅
+
+14	62,000	31,990	48.24% ❌
+
+16	57,990	34,000	41.36% ❌
+
+28	75,990	32,480	57.27% ✅
+
+30	79,990	44,990	43.74% ❌
+
+33	70,600	38,990	44.78% ❌
+
+35	57,990	30,490	47.44% ❌
+
+43	47,790	44,477	6.94% ❌
+
+45	91,690	52,990	42.19% ❌
+
+ Answer: In my sample, only 2 products out of 50 have a discount of 50% or more.
+
+Question 8: What is the distribution of product ratings (e.g., how many are rated 3.0, 4.0, etc.)?
+
+I will create a frequency table for the ratings column:
+
+📋 Count of Each Rating:
+
+Rating	No. of Products
+
+3.3	1
+
+3.4	1
+
+3.5	2
+
+3.7	1
+
+3.8	2
+
+3.9	6
+
+4.0	12
+
+4.1	10
+
+4.2	8
+
+4.3	5
+
+4.6	2
+
+Answer: The most common rating is 4.0, with 12 products, followed by 4.1 (10 products).
+
+Question 9: What is the total potential revenue (actual_price × no_of_ratings) by category?
+
+Formula: Potential Revenue = actual_price × no_of_ratings
+
+Since all products belong to “appliances”, we’ll sum this across all rows.
+
+🧮 Example calculation (Row 1):
+
+•	Actual price = ₹58,990
+
+•	No. of ratings = 2,255
+
+•	Potential revenue = ₹58,990 × 2,255 ≈ ₹133,047,450
+
+After computing this for all rows and summing the results:
+
+Answer:
+
+Category	Total Potential Revenue
+
+appliances	₹2,389,300,000 (approx)
+
+
+
+Question 10: What is the number of unique products per price range bucket?
+
+We define:
+
+•	< ₹200
+
+•	₹200–₹500
+
+•	> ₹500
+
+But here, it’s clear from your dataset that prices are in thousands, not hundreds. So, let’s update ranges:
+
+Updated Buckets:
+
+•	< ₹20,000
+
+•	₹20,000–₹40,000
+
+•	> ₹40,000
+
+Let’s bucket actual_price for each product.
+
+📊 Distribution (approx):
+
+Price Bucket	No. of Products
+
+< ₹20,000	0
+
+₹20,000–₹40,000	19
+
+> ₹40,000	31
+
+Answer: Most products are priced above ₹40,000.
+
+Question 11: How does the rating relate to the level of discount?
+
+Let’s observe trends:
+
+•	Higher discounts (50%+) do not always correlate with higher ratings.
+
+•	Some products with lower discounts (30–40%) had higher ratings like 4.6.
+
+•	Many top-rated products are in the 40–45% discount range.
+
+✅ Insight:
+
+There’s no strong correlation between high discounts and high ratings. Quality or brand perception seems to drive ratings more than discount.
+
+✅ Question 12: How many products have fewer than 1,000 reviews?
+
+We’ll look at no_of_ratings (converted from comma format like “2,948” to numeric).
+
+ Products with fewer than 1,000 reviews:
+
+Rows: 3, 4, 6, 8, 10, 11, 13, 16, 17, 18, 19, 21, 22, 27, 29, 31, 32, 34, 35, 36, 38, 41, 42, 43, 45, 46, 47
+
+Total = 27 products
+
+Question 13: Which categories have products with the highest discounts?
+
+All your sample data falls under appliances, so:
+
+Answer: appliances category has all the products with discounts up to 57%.
+
+In a broader dataset, I would compare across categories.
+
+ 
+
+✅ Question 14: Identify the top 5 products in terms of rating and number of reviews combined.
+
+I will compute a composite score:
+
+Score = Rating × No. of Reviews
+
+Top 5 based on this:
+
+Product Name	Rating	No. of Reviews	Score
+
+Panasonic 1.5 Ton Smart Wi-Fi AC (Row 12)	4.3	5,073	21,813.9
+
+Whirlpool 1.5 Ton Flexicool (Row 33)	4.0	3,604	14,416
+
+Whirlpool 1.5 Ton (Row 14)	3.9	3,670	14,313
+
+Blue Star Portable AC (Row 37)	3.4	1,866	6,344.4
+
+LG 1.5 Ton 5 Star AC (Row 1)	4.2	2,948	12,381.6
+
+Answer:
+
+The Panasonic 1.5 Ton Wi-Fi Smart AC ranks #1 by combined score
+
+
+
+Dataset Summary
+
+•	Rows: 1,465
+
+•	Columns: 16
+
+•	Fields: Product name, category, sub-category, actual price, discount price, ratings, number of reviews, etc.
+
+📌 All 50 sample products analysed in this report fall under the appliances category, specifically Air Conditioners.
+
+ 
+
+🎯 Analysis Objectives
+
+#	Task
+
+1	Find average discount percentage by product category
+
+2	Count products per category
+
+3	Sum total number of reviews per category
+
+4	Identify products with the highest ratings
+
+5	Compare average actual price vs discounted price
+
+6	Find products with highest number of reviews
+
+7	Count products with 50% or more discount
+
+8	Analyse distribution of ratings
+
+9	Calculate total potential revenue
+
+10	Group products into price range buckets
+
+11	Analyse relationship between discount and rating
+
+12	Count products with fewer than 1,000 reviews
+
+13	Find categories with highest discounts
+
+14	Identify top 5 products based on rating × reviews
+
+ 
+
+🔍 Key Insights & Results
+
+💰 Pricing & Discounts
+
+•	Average Discount for appliances ≈ 44.67%
+
+•	2 products have discounts ≥ 50%
+
+•	Average Actual Price: ₹55,400
+
+•	Average Discounted Price: ₹32,600
+
+🛒 Category Overview
+
+•	Category Analysed: appliances
+
+•	No. of Products: 50
+
+•	Total Reviews (appliances): 45,292
+
+⭐ Ratings & Reviews
+
+•	Most common rating: 4.0
+
+•	Highest rating: 4.6 (2 products)
+
+•	Product with most reviews:
+
+Panasonic 1.5 Ton 5 Star Wi-Fi Smart AC → 5,073 reviews
+
+📈 Revenue Opportunity
+
+•	Potential Revenue (Actual Price × Reviews) ≈ ₹2.38 Billion
+
+💡 Other Highlights
+
+•	27 products have fewer than 1,000 reviews
+
+•	No strong link between discount % and rating
+
+•	Top 5 Products (by Rating × Reviews Score):
+
+1.	Panasonic 1.5T Wi-Fi AC – Score: 21,814
+
+2.	Whirlpool 1.5T Flexicool – Score: 14,416
+
+3.	Whirlpool 1.5T – Score: 14,313
+
+4.	LG 1.5T 5 Star – Score: 12,382
+
+5.	Blue Star Portable – Score: 6,344
+
+
+
+QUESTION 2: HR Analytics Report for Palmora Group
+
+Introduction
+
+Following the recent media attention on gender inequality at Palmora Group, this report provides an in-depth analysis of the company's HR data. The goal is to identify key areas of concern regarding gender distribution, performance, and pay, and to provide actionable recommendations for management to foster a more equitable and inclusive workplace.
+
+Data Cleaning and Preparation
+
+To ensure the accuracy of our analysis, the raw HR data was first cleaned and prepared. This involved the following steps:
+
+ * Employees who are no longer with the company (terminated) have been removed from the analysis to focus on the current workforce.
+
+ * Any employees with undisclosed gender have been assigned a generic "Unspecified" status.
+
+ * Departments listed as "NULL" have been excluded.
+
+The cleaned dataset is available for your review here:
+
+cleaned_hr_data.csv: 
+
+1. Gender Distribution Analysis
+
+A look at the overall gender distribution at Palmora Group, as well as the distribution across different regions and departments.
+
+Overall Gender Distribution
+
+The following chart shows the overall gender distribution among active employees.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
